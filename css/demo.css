@@ -49,16 +49,16 @@ a:hover {
 }
 
 .bp-header__title {
-	font-size: 10vw;
-	font-weight: 700;
+	font-size: 9vw;
 	line-height: 1.3;
 	margin: 0;
-	letter-spacing: 3px;
-	text-transform: uppercase;
+	letter-spacing: 10px;
 	color: #fff;
 	text-shadow:
 		1px 1px 3px #332929,
 		-1px -1px 3px #332929;
+	font-family: 'Russo One', sans-serif;
+
 }
 
 .bp-header__desc {
@@ -175,8 +175,8 @@ a:hover {
 .main-page {
 	background:
 		linear-gradient(
-			rgba(255, 0, 0, 0.5),
-			rgba(255, 0, 0, 0.5)
+			rgba(0, 0,0, 0.9),
+			rgba(255, 255, 255, 0.2)
 			),
 		url(../images/background.jpg) no-repeat center center fixed !important;
 	-webkit-background-size: cover !important;
