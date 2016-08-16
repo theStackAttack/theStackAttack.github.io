@@ -4,7 +4,7 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2015, Codrops
  * http://www.codrops.com
  */
@@ -72,7 +72,7 @@
 				else {
 					// invisible pages in the stack
 					page.style.WebkitTransform = 'translate3d(0,75%,-300px)';
-					page.style.transform = 'translate3d(0,75%,-300px)';		
+					page.style.transform = 'translate3d(0,75%,-300px)';
 				}
 			}
 			else {
@@ -80,7 +80,7 @@
 			}
 
 			page.style.zIndex = i < current ? parseInt(current - i) : parseInt(pagesTotal + current - i);
-			
+
 			if( posIdx !== -1 ) {
 				page.style.opacity = parseFloat(1 - 0.1 * posIdx);
 			}
@@ -106,19 +106,19 @@
 		});
 
 		// clicking on a page when the menu is open triggers the menu to close again and open the clicked page
-		pages.forEach(function(page) {
-			var pageid = page.getAttribute('id');
-			page.addEventListener('click', function(ev) {
-				if( isMenuOpen ) {
-					ev.preventDefault();
-					openPage(pageid);
-				}
-			});
-		});
+		// pages.forEach(function(page) {
+		// 	var pageid = page.getAttribute('id');
+		// 	page.addEventListener('click', function(ev) {
+		// 		if( isMenuOpen ) {
+		// 			ev.preventDefault();
+		// 			openPage(pageid);
+		// 		}
+		// 	});
+		// });
 
 		// keyboard navigation events
 		document.addEventListener( 'keydown', function( ev ) {
-			if( !isMenuOpen ) return; 
+			if( !isMenuOpen ) return;
 			var keyCode = ev.keyCode || ev.which;
 			if( keyCode === 27 ) {
 				closeMenu();
@@ -142,17 +142,17 @@
 		// toggle the menu button
 		classie.add(menuCtrl, 'menu-button--open')
 		// stack gets the class "pages-stack--open" to add the transitions
-		classie.add(stack, 'pages-stack--open');
+		// classie.add(stack, 'pages-stack--open');
 		// reveal the menu
 		classie.add(nav, 'pages-nav--open');
 
 		// now set the page transforms
-		var stackPagesIdxs = getStackPagesIdxs();
-		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
-			var page = pages[stackPagesIdxs[i]];
-			page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
-			page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
-		}
+		// var stackPagesIdxs = getStackPagesIdxs();
+		// for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
+		// 	var page = pages[stackPagesIdxs[i]];
+		// 	page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
+		// 	page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
+		// }
 	}
 
 	// closes the menu
@@ -163,6 +163,19 @@
 
 	// opens a page
 	function openPage(id) {
+		if(id){
+			console.log("ID: "+id);
+			console.log("PageID: "+pages[current].id);
+			if(id !== pages[current].id){
+				classie.add(stack, 'pages-stack--open');
+				var stackPagesIdxs = getStackPagesIdxs();
+				for(var i = 0, len = pages.length; i < len; ++i) {
+					var page = pages[i];
+					page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
+					page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
+				}
+			}
+		}
 		var futurePage = id ? document.getElementById(id) : pages[current],
 			futureCurrent = pages.indexOf(futurePage),
 			stackPagesIdxs = getStackPagesIdxs(futureCurrent);
@@ -183,16 +196,16 @@
 		if( id ) {
 			current = futureCurrent;
 		}
-		
+
 		// close menu..
 		classie.remove(menuCtrl, 'menu-button--open');
 		classie.remove(nav, 'pages-nav--open');
 		onEndTransition(futurePage, function() {
-			classie.remove(stack, 'pages-stack--open');
+			// classie.remove(stack, 'pages-stack--open');
 			// reorganize stack
 			buildStack();
-			isMenuOpen = false;
 		});
+		isMenuOpen = false;
 	}
 
 	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
