@@ -185,6 +185,42 @@ a:hover {
   background-size: cover !important;
 }
 
+.members {
+	display: -webkit-inline-box;
+	width: 100%;
+}
+
+.member1, .member2 {
+	width: 50%;
+}
+
+.member1 {
+	text-align: right;
+}
+
+.member2 {
+	text-align: left;
+}
+
+.avatar1-div:hover, avatar2-div:hover {
+	height: 12vw;
+	-webkit-transition: -webkit-transform 0.7s;
+	transition: transform 0.7s;
+	-webkit-transform: scale(0.5);
+	transform: scale(0.5);
+}
+
+.member-details {
+	display: none;
+	height: 100%;
+	width: auto;
+	padding: 10% auto;
+}
+
+.small {
+	font-size: 7vw;
+}
+
 /* Typed.js CSS */
 
 .typed-cursor{
