@@ -232,3 +232,13 @@
 	init();
 
 })(window);
+
+
+$('.member1').hover(function () {
+	$('#page-team > header > div > div.member1 > avatar1-div').css({'-webkit-transition': '-webkit-transform 0.7s', 'transition': 'transform 0.7s', '-webkit-transform': 'scale(0.5)', 'tranform': 'scale(0.5)'});
+	$('#page-team > header > div > div.member1 > div.member-details').css({'display': 'block', 'box-sizing': 'border-box'});
+},
+function () {
+		$('#page-team > header > div > div.member1 > avatar1-div').css({'-webkit-transition': '-webkit-transform 0.7s', 'transition': 'transform 0.7s', '-webkit-transform': 'scale(1)', 'tranform': 'scale(1)'});
+		$('#page-team > header > div > div.member1 > div.member-details').css({'display': 'none'});
+});
